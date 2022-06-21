@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    web:
+        image: openresty/openresty
+        ports:
+            - "8080:80"
+        volumes:
+            - "./conf:/etc/nginx/conf.d"
+            - "./site:/usr/local/openresty/nginx/html"
+        depends_on:
+            - api
+    api:
+        build:
+            context: ./auth
+        expose:
+            - 8000
+        
+        
+
